@@ -26,7 +26,7 @@ module.exports = function (RED) {
     var fs = require("fs-extra");    
     var MQTTStore = require('mqtt-nedb-store');
     
-    var mqttDir = path.join(RED.settings.userDir, 'google-iot-core');
+    var mqttDir = path.join(RED.settings.userDir, 'google-iot-core-custom-auth');
 
     // create a directory if needed for the data
     fs.ensureDirSync(mqttDir);
@@ -41,7 +41,7 @@ module.exports = function (RED) {
 
     // Create a Cloud IoT Core JWT for the given project id, signed with the given
     // private key.
-    function createJwt (projectId, privateKey) {
+    function createJwt (projectId, privateKey, algorithm) {
         // Create a JWT to authenticate this device. The device will be disconnected
         // after the token expires, and will have to reconnect with a new token. The
         // audience field should always be set to the GCP project id.
@@ -50,7 +50,7 @@ module.exports = function (RED) {
             'exp': Math.round(Date.now() / 1000) + 60 * 60,  // 60 minutes
             'aud': projectId
         };
-        return jwt.sign(token, privateKey, { algorithm: 'RS256' });
+        return jwt.sign(token, privateKey, { algorithm: algorithm });
     }
 
     function MQTTBrokerNode(n) {
@@ -70,6 +70,7 @@ module.exports = function (RED) {
         this.compactinterval = n.compactinterval;
         this.persistin = n.persistin;
         this.persistout = n.persistout;
+        this.algorithm = n.algorithm;
 
         // Config node state
         this.brokerurl = "";
@@ -112,7 +113,7 @@ module.exports = function (RED) {
         }
 
         if (!this.clientid) {
-            this.warn(RED._("google-iot-core.errors.missingclientid"));
+            this.warn(RED._("google-iot-core-custom-auth.errors.missingclientid"));
         }
 
         // Build options for passing to the MQTT.js API
@@ -129,7 +130,7 @@ module.exports = function (RED) {
                 tlsNode.addTLSOptions(this.options);
             }
         }
-        this.options.password = createJwt(this.projectid, this.options.key);
+        this.options.password = createJwt(this.projectid, this.options.key, this.algorithm);
 
         // configure db storage
         if (this.persistin) {
@@ -193,7 +194,7 @@ module.exports = function (RED) {
                 node.client.on('connect', function () {
                     node.connecting = false;
                     node.connected = true;
-                    node.log(RED._("google-iot-core.state.connected", { broker: (node.clientid ? node.clientid + "@" : "") + node.brokerurl }));
+                    node.log(RED._("google-iot-core-custom-auth.state.connected", { broker: (node.clientid ? node.clientid + "@" : "") + node.brokerurl }));
                     for (var id in node.users) {
                         if (node.users.hasOwnProperty(id)) {
                             node.users[id].status({ fill: "green", shape: "dot", text: "node-red:common.status.connected" });
@@ -233,24 +234,24 @@ module.exports = function (RED) {
                 // Register disconnect handlers
                 node.client.on('close', function () {
                     // refresh JWT token
-                    node.client.options.password = createJwt(node.projectid, node.options.key);
+                    node.client.options.password = createJwt(node.projectid, node.options.key, node.algorithm);
                     if (node.connected) {
                         node.connected = false;
-                        node.log(RED._("google-iot-core.state.disconnected", { broker: (node.clientid ? node.clientid + "@" : "") + node.brokerurl }));
+                        node.log(RED._("google-iot-core-custom-auth.state.disconnected", { broker: (node.clientid ? node.clientid + "@" : "") + node.brokerurl }));
                         for (var id in node.users) {
                             if (node.users.hasOwnProperty(id)) {
                                 node.users[id].status({ fill: "red", shape: "ring", text: "node-red:common.status.disconnected" });
                             }
                         }
                     } else if (node.connecting) {
-                        node.log(RED._("google-iot-core.state.connect-failed", { broker: (node.clientid ? node.clientid + "@" : "") + node.brokerurl }));
+                        node.log(RED._("google-iot-core-custom-auth.state.connect-failed", { broker: (node.clientid ? node.clientid + "@" : "") + node.brokerurl }));
                     }
                 });
 
                 // Register connect error handler
                 node.client.on('error', function (error) {
                     // refresh JWT token
-                    node.client.options.password = createJwt(node.projectid, node.options.key);
+                    node.client.options.password = createJwt(node.projectid, node.options.key, node.algorithm);
                     if (node.connecting) {
                         node.client.end();
                         node.connecting = false;
@@ -361,7 +362,7 @@ module.exports = function (RED) {
         this.brokerConn = RED.nodes.getNode(this.broker);
         this.topic = '/devices/' + this.brokerConn.deviceid + '/config';
         if (!/^(#$|(\+|[^+#]*)(\/(\+|[^+#]*))*(\/(\+|#|[^+#]*))?$)/.test(this.topic)) {
-            return this.warn(RED._("google-iot-core.errors.invalid-topic"));
+            return this.warn(RED._("google-iot-core-custom-auth.errors.invalid-topic"));
         }
         var node = this;
         if (this.brokerConn) {
@@ -381,7 +382,7 @@ module.exports = function (RED) {
                 }
             }
             else {
-                this.error(RED._("google-iot-core.errors.not-defined"));
+                this.error(RED._("google-iot-core-custom-auth.errors.not-defined"));
             }
             this.on('close', function (done) {
                 if (node.brokerConn) {
@@ -390,12 +391,12 @@ module.exports = function (RED) {
                 }
             });
         } else {
-            this.error(RED._("google-iot-core.errors.missing-config"));
+            this.error(RED._("google-iot-core-custom-auth.errors.missing-config"));
         }
     }
-    RED.nodes.registerType("google-iot-core in", MQTTInNode);
+    RED.nodes.registerType("google-iot-core-custom-auth in", MQTTInNode);
 
-    RED.nodes.registerType("google-iot-core-broker", MQTTBrokerNode, {
+    RED.nodes.registerType("google-iot-core-custom-auth-broker", MQTTBrokerNode, {
     });
 
     function MQTTOutNode(n) {
@@ -426,7 +427,7 @@ module.exports = function (RED) {
                     if (msg.hasOwnProperty("topic") && (typeof msg.topic === "string") && (msg.topic !== "")) { // topic must exist
                         this.brokerConn.publish(msg);  // send the message
                     }
-                    else { node.warn(RED._("google-iot-core.errors.invalid-topic")); }
+                    else { node.warn(RED._("google-iot-core-custom-auth.errors.invalid-topic")); }
                 }
             });
             if (this.brokerConn.connected) {
@@ -437,8 +438,8 @@ module.exports = function (RED) {
                 node.brokerConn.deregister(node, done);
             });
         } else {
-            this.error(RED._("google-iot-core.errors.missing-config"));
+            this.error(RED._("google-iot-core-custom-auth.errors.missing-config"));
         }
     }
-    RED.nodes.registerType("google-iot-core out", MQTTOutNode);
+    RED.nodes.registerType("google-iot-core-custom-auth out", MQTTOutNode);
 };

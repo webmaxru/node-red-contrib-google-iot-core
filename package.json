@@ -1,22 +1,39 @@
 {
-  "name": "node-red-contrib-google-iot-core",
-  "version": "0.0.4",
-  "description": "MQTT Node with persistent message storage for Google IoT core",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "_from": "node-red-contrib-google-iot-core-custom-auth",
+  "_id": "node-red-contrib-google-iot-core-custom-auth@0.0.1",
+  "_inBundle": false,
+  "_integrity": "sha512-0Wcc34IpGX+MgK3m2JcWU9wn2pD3PX8hUQXoh9DD8MscJKmrxJCIFh7OuvqP9A1H1//EnJtz/DKM47l39fo8SA==",
+  "_location": "/node-red-contrib-google-iot-core-custom-auth",
+  "_phantomChildren": {
+    "graceful-fs": "4.1.11",
+    "jsonfile": "4.0.0",
+    "universalify": "0.1.1"
   },
-  "repository": "https://github.com/cyberflohr/node-red-contrib-google-iot-core",
-  "author": "Wolfgang Flohr-Hochbichler",
-  "license": "Apache-2.0",
-  "keywords": [
-    "node-red",
-    "mqtt"
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "node-red-contrib-google-iot-core-custom-auth",
+    "name": "node-red-contrib-google-iot-core-custom-auth",
+    "escapedName": "node-red-contrib-google-iot-core-custom-auth",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
   ],
-  "node-red": {
-    "nodes": {
-      "google-iot-core": "google-iot-core.js"
-    }
+  "_resolved": "https://registry.npmjs.org/node-red-contrib-google-iot-core-custom-auth/-/node-red-contrib-google-iot-core-custom-auth-0.0.4.tgz",
+  "_shasum": "fffe2ff5b26c5bb541ffbd0e684431ae9ffe1974",
+  "_spec": "node-red-contrib-google-iot-core-custom-auth",
+  "_where": "/opt/demo/nodered",
+  "author": {
+    "name": "Maxim Salnikov"
   },
+  "bugs": {
+    "url": "https://github.com/webmaxru/node-red-contrib-google-iot-core-custom-auth/issues"
+  },
+  "bundleDependencies": false,
   "dependencies": {
     "fs-extra": "^4.0.2",
     "is-utf8": "^0.2.1",
@@ -24,5 +41,29 @@
     "mqtt": "^2.14.0",
     "mqtt-nedb-store": "^0.1.0",
     "nedb": "^1.8.0"
-  }
+  },
+  "deprecated": false,
+  "description": "MQTT Node with persistent message storage for Google IoT core using custom authentication",
+  "homepage": "https://github.com/webmaxru/node-red-contrib-google-iot-core-custom-auth#readme",
+  "keywords": [
+    "node-red",
+    "mqtt",
+    "google",
+    "iot"
+  ],
+  "license": "Apache-2.0",
+  "name": "node-red-contrib-google-iot-core-custom-auth",
+  "node-red": {
+    "nodes": {
+      "google-iot-core-custom-auth": "google-iot-core-custom-auth.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webmaxru/node-red-contrib-google-iot-core-custom-auth.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.1"
 }

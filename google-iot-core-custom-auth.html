@@ -13,13 +13,13 @@
   Modifications Copyright 2017 Sense Tecnic Systems, Inc.
 -->
 
-<script type="text/x-red" data-template-name="google-iot-core in">
+<script type="text/x-red" data-template-name="google-iot-core-custom-auth in">
     <div class="form-row">
-        <label for="node-input-broker"><i class="fa fa-globe"></i> <span data-i18n="google-iot-core.label.broker"></span></label>
+        <label for="node-input-broker"><i class="fa fa-globe"></i> <span data-i18n="google-iot-core-custom-auth.label.broker"></span></label>
         <input type="text" id="node-input-broker">
     </div>
     <div class="form-row">
-        <label for="node-input-qos"><i class="fa fa-empire"></i> <span data-i18n="google-iot-core.label.qos"></span></label>
+        <label for="node-input-qos"><i class="fa fa-empire"></i> <span data-i18n="google-iot-core-custom-auth.label.qos"></span></label>
         <select id="node-input-qos" style="width:125px !important">
             <option value="0">0</option>
             <option value="1">1</option>
@@ -27,12 +27,12 @@
         </select>
     </div>
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core.label.name"></span></label>
-        <input type="text" id="node-input-name" data-i18n="[placeholder]google-iot-core.label.name">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core-custom-auth.label.name"></span></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]google-iot-core-custom-auth.label.name">
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="google-iot-core in">
+<script type="text/x-red" data-help-name="google-iot-core-custom-auth in">
 <p>Connects to Google IoT core MQTT broker and subscribes to messages from the /devices/&lt;DeviceID&gt;/config topic backed by a persistent
 message store.</p>
     <h3>Outputs</h3>
@@ -51,19 +51,19 @@ message store.</p>
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('google-iot-core in',{
+    RED.nodes.registerType('google-iot-core-custom-auth in',{
         category: 'input',
         defaults: {
             name: {value:""},
             qos: {value: "2"},
-            broker: {type:"google-iot-core-broker", required:true}
+            broker: {type:"google-iot-core-custom-auth-broker", required:true}
         },
         color:"#AAAA66",
         inputs:0,
         outputs:1,
         icon: "bridge.png",
         label: function() {
-            return this.name||"google-iot-core";
+            return this.name||"google-iot-core-custom-auth";
         },
         labelStyle: function() {
             return this.name?"node_label_italic":"";
@@ -76,33 +76,33 @@ message store.</p>
     });
 </script>
 
-<script type="text/x-red" data-template-name="google-iot-core out">
+<script type="text/x-red" data-template-name="google-iot-core-custom-auth out">
     <div class="form-row">
-        <label for="node-input-broker"><i class="fa fa-globe"></i> <span data-i18n="google-iot-core.label.broker"></span></label>
+        <label for="node-input-broker"><i class="fa fa-globe"></i> <span data-i18n="google-iot-core-custom-auth.label.broker"></span></label>
         <input type="text" id="node-input-broker">
     </div>
     <div class="form-row">
-        <label for="node-input-qos"><i class="fa fa-empire"></i> <span data-i18n="google-iot-core.label.qos"></span></label>
+        <label for="node-input-qos"><i class="fa fa-empire"></i> <span data-i18n="google-iot-core-custom-auth.label.qos"></span></label>
         <select id="node-input-qos" style="width:125px !important">
             <option value=""></option>
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
         </select>
-        &nbsp;&nbsp;<i class="fa fa-history"></i>&nbsp;<span data-i18n="google-iot-core.retain"></span> &nbsp;<select id="node-input-retain" style="width:125px !important">
+        &nbsp;&nbsp;<i class="fa fa-history"></i>&nbsp;<span data-i18n="google-iot-core-custom-auth.retain"></span> &nbsp;<select id="node-input-retain" style="width:125px !important">
             <option value=""></option>
-            <option value="false" data-i18n="google-iot-core.false"></option>
-            <option value="true" data-i18n="google-iot-core.true"></option>
+            <option value="false" data-i18n="google-iot-core-custom-auth.false"></option>
+            <option value="true" data-i18n="google-iot-core-custom-auth.true"></option>
         </select>
     </div>
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core.label.name"></span></label>
-        <input type="text" id="node-input-name" data-i18n="[placeholder]google-iot-core.label.name">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core-custom-auth.label.name"></span></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]google-iot-core-custom-auth.label.name">
     </div>
-    <div class="form-tips"><span data-i18n="google-iot-core.tip"></span></div>
+    <div class="form-tips"><span data-i18n="google-iot-core-custom-auth.tip"></span></div>
 </script>
 
-<script type="text/x-red" data-help-name="google-iot-core out">
+<script type="text/x-red" data-help-name="google-iot-core-custom-auth out">
 <p>Connects to Google IoT core MQTT broker and subscribes to messages from the /devices/&lt;DeviceID&gt;/events topic backed by a persistent
 message store.</p>
     <h3>Inputs</h3>
@@ -129,13 +129,13 @@ message store.</p>
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('google-iot-core out',{
+    RED.nodes.registerType('google-iot-core-custom-auth out',{
         category: 'output',
         defaults: {
             name: {value:""},
             qos: {value:""},
             retain: {value:""},
-            broker: {type:"google-iot-core-broker", required:true}
+            broker: {type:"google-iot-core-custom-auth-broker", required:true}
         },
         color:"#AAAA66",
         inputs:1,
@@ -143,7 +143,7 @@ message store.</p>
         icon: "bridge.png",
         align: "right",
         label: function() {
-            return this.name||"google-iot-core";
+            return this.name||"google-iot-core-custom-auth";
         },
         labelStyle: function() {
             return this.name?"node_label_italic":"";
@@ -151,10 +151,10 @@ message store.</p>
     });
 </script>
 
-<script type="text/x-red" data-template-name="google-iot-core-broker">
+<script type="text/x-red" data-template-name="google-iot-core-custom-auth-broker">
     <div class="form-row">
-        <label for="node-config-input-name"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core.label.name"></span></label>
-        <input type="text" id="node-config-input-name" data-i18n="[placeholder]google-iot-core.label.name">
+        <label for="node-config-input-name"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core-custom-auth.label.name"></span></label>
+        <input type="text" id="node-config-input-name" data-i18n="[placeholder]google-iot-core-custom-auth.label.name">
     </div>
     <div class="form-row">
         <ul style="background: #fff; min-width: 600px; margin-bottom: 20px;" id="node-config-mqtt-broker-tabs"></ul>
@@ -162,96 +162,100 @@ message store.</p>
     <div id="node-config-mqtt-broker-tabs-content" style="min-height: 170px;">
         <div id="mqtt-broker-tab-connection" style="display:none">
             <div class="form-row node-input-broker">
-                <label for="node-config-input-broker"><i class="fa fa-globe"></i> <span data-i18n="google-iot-core.label.broker"></span></label>
-                <input class="input-append-left" type="text" id="node-config-input-broker" style="width:40%;" data-i18n="[placeholder]google-iot-core.label.example">
-                <label for="node-config-input-port" style="margin-left:20px; width:43px; "> <span data-i18n="google-iot-core.label.port"></span></label>
-                <input type="text" id="node-config-input-port" data-i18n="[placeholder]google-iot-core.label.port" style="width:55px">
+                <label for="node-config-input-broker"><i class="fa fa-globe"></i> <span data-i18n="google-iot-core-custom-auth.label.broker"></span></label>
+                <input class="input-append-left" type="text" id="node-config-input-broker" style="width:40%;" data-i18n="[placeholder]google-iot-core-custom-auth.label.example">
+                <label for="node-config-input-port" style="margin-left:20px; width:43px; "> <span data-i18n="google-iot-core-custom-auth.label.port"></span></label>
+                <input type="text" id="node-config-input-port" data-i18n="[placeholder]google-iot-core-custom-auth.label.port" style="width:55px">
             </div>
             <div class="form-row">
-                <label style="width: auto; margin-left: 20px; margin-right: 10px;" for="node-config-input-tls"><span data-i18n="google-iot-core.label.tls-config"></span></label><input style="width: 300px;" type="text" id="node-config-input-tls">
+                <label style="width: auto; margin-left: 20px; margin-right: 10px;" for="node-config-input-tls"><span data-i18n="google-iot-core-custom-auth.label.tls-config"></span></label><input style="width: 300px;" type="text" id="node-config-input-tls">
             </div>
             <div class="form-row">
-                <label for="node-config-input-clientid"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core.label.clientid"></span></label>
-                <input type="text" id="node-config-input-clientid" data-i18n="[placeholder]google-iot-core.placeholder.clientid">
+                <label for="node-config-input-clientid"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core-custom-auth.label.clientid"></span></label>
+                <input type="text" id="node-config-input-clientid" data-i18n="[placeholder]google-iot-core-custom-auth.placeholder.clientid">
             </div>
             <div class="form-row">
-                <label for="node-config-input-projectid"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core.label.projectid"></span></label>
+                <label for="node-config-input-projectid"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core-custom-auth.label.projectid"></span></label>
                 <input type="text" id="node-config-input-projectid">
             </div>
             <div class="form-row">
-                <label for="node-config-input-region"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core.label.region"></span></label>
-                <input type="text" id="node-config-input-region" data-i18n="[placeholder]google-iot-core.placeholder.region">
+                <label for="node-config-input-region"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core-custom-auth.label.region"></span></label>
+                <input type="text" id="node-config-input-region" data-i18n="[placeholder]google-iot-core-custom-auth.placeholder.region">
             </div>
             <div class="form-row">
-                <label for="node-config-input-registryid"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core.label.registryid"></span></label>
+                <label for="node-config-input-registryid"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core-custom-auth.label.registryid"></span></label>
                 <input type="text" id="node-config-input-registryid">
             </div>
             <div class="form-row">
-                <label for="node-config-input-deviceid"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core.label.deviceid"></span></label>
+                <label for="node-config-input-deviceid"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core-custom-auth.label.deviceid"></span></label>
                 <input type="text" id="node-config-input-deviceid">
             </div>
             <div class="form-row">
-                <label for="node-config-input-keepalive" style="width: auto"><i class="fa fa-clock-o"></i> <span data-i18n="google-iot-core.label.keepalive"></span></label>
+                <label for="node-config-input-algorithm"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core-custom-auth.label.algorithm"></span></label>
+                <input type="text" id="node-config-input-algorithm">
+            </div>
+            <div class="form-row">
+                <label for="node-config-input-keepalive" style="width: auto"><i class="fa fa-clock-o"></i> <span data-i18n="google-iot-core-custom-auth.label.keepalive"></span></label>
                 <input type="text" id="node-config-input-keepalive" style="width: 50px">
             </div>
             <div class="form-row">
                 <input type="checkbox" id="node-config-input-persistout" style="display: inline-block; width: auto; vertical-align: top;">
-                <label for="node-config-input-persistout" style="width: auto;" data-i18n="google-iot-core.label.persistout"></label>
+                <label for="node-config-input-persistout" style="width: auto;" data-i18n="google-iot-core-custom-auth.label.persistout"></label>
                 <input type="checkbox" id="node-config-input-persistin" style="margin-left: 30px; display: inline-block; width: auto; vertical-align: top;">
-                <label for="node-config-input-persistin" style="width: auto;" data-i18n="google-iot-core.label.persistin"></label>
+                <label for="node-config-input-persistin" style="width: auto;" data-i18n="google-iot-core-custom-auth.label.persistin"></label>
             </div>
             <div class="form-row">
-                <label for="node-config-input-compactinterval" style="width: auto"><i class="fa fa-clock-o"></i> <span data-i18n="google-iot-core.label.compactinterval"></span></label>
+                <label for="node-config-input-compactinterval" style="width: auto"><i class="fa fa-clock-o"></i> <span data-i18n="google-iot-core-custom-auth.label.compactinterval"></span></label>
                 <input type="text" id="node-config-input-compactinterval" style="width: 50px">
             </div>
         </div>
         <div id="mqtt-broker-tab-birth" style="display:none">
             <div class="form-row">
-                <label for="node-config-input-birthTopic"><i class="fa fa-tasks"></i> <span data-i18n="google-iot-core.label.topic"></span></label>
-                <input type="text" id="node-config-input-birthTopic" data-i18n="[placeholder]google-iot-core.placeholder.birth-topic">
+                <label for="node-config-input-birthTopic"><i class="fa fa-tasks"></i> <span data-i18n="google-iot-core-custom-auth.label.topic"></span></label>
+                <input type="text" id="node-config-input-birthTopic" data-i18n="[placeholder]google-iot-core-custom-auth.placeholder.birth-topic">
             </div>
             <div class="form-row">
-                <label for="node-config-input-birthQos"><i class="fa fa-empire"></i> <span data-i18n="google-iot-core.label.qos"></span></label>
+                <label for="node-config-input-birthQos"><i class="fa fa-empire"></i> <span data-i18n="google-iot-core-custom-auth.label.qos"></span></label>
                 <select id="node-config-input-birthQos" style="width:125px !important">
                     <option value="0">0</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                 </select>
-                &nbsp;&nbsp;<i class="fa fa-history"></i>&nbsp;<span data-i18n="google-iot-core.retain"></span> &nbsp;<select id="node-config-input-birthRetain" style="width:125px !important">
-                    <option value="false" data-i18n="google-iot-core.false"></option>
-                    <option value="true" data-i18n="google-iot-core.true"></option>
+                &nbsp;&nbsp;<i class="fa fa-history"></i>&nbsp;<span data-i18n="google-iot-core-custom-auth.retain"></span> &nbsp;<select id="node-config-input-birthRetain" style="width:125px !important">
+                    <option value="false" data-i18n="google-iot-core-custom-auth.false"></option>
+                    <option value="true" data-i18n="google-iot-core-custom-auth.true"></option>
                 </select>
             </div>
             <div class="form-row">
-                <label for="node-config-input-birthPayload"><i class="fa fa-envelope"></i> <span data-i18n="google-iot-core.label.payload"></span></label>
-                <input type="text" id="node-config-input-birthPayload" data-i18n="[placeholder]google-iot-core.label.payload">
+                <label for="node-config-input-birthPayload"><i class="fa fa-envelope"></i> <span data-i18n="google-iot-core-custom-auth.label.payload"></span></label>
+                <input type="text" id="node-config-input-birthPayload" data-i18n="[placeholder]google-iot-core-custom-auth.label.payload">
             </div>
         </div>
         <div id="mqtt-broker-tab-will" style="display:none">
             <div class="form-row">
-                <label for="node-config-input-willTopic"><i class="fa fa-tasks"></i> <span data-i18n="google-iot-core.label.topic"></span></label>
-                <input type="text" id="node-config-input-willTopic" data-i18n="[placeholder]google-iot-core.placeholder.will-topic">
+                <label for="node-config-input-willTopic"><i class="fa fa-tasks"></i> <span data-i18n="google-iot-core-custom-auth.label.topic"></span></label>
+                <input type="text" id="node-config-input-willTopic" data-i18n="[placeholder]google-iot-core-custom-auth.placeholder.will-topic">
             </div>
             <div class="form-row">
-                <label for="node-config-input-willQos"><i class="fa fa-empire"></i> <span data-i18n="google-iot-core.label.qos"></span></label>
+                <label for="node-config-input-willQos"><i class="fa fa-empire"></i> <span data-i18n="google-iot-core-custom-auth.label.qos"></span></label>
                 <select id="node-config-input-willQos" style="width:125px !important">
                     <option value="0">0</option>
                     <option value="1">1</option>
                 </select>
-                &nbsp;&nbsp;<i class="fa fa-history"></i>&nbsp;<span data-i18n="google-iot-core.retain"></span> &nbsp;<select id="node-config-input-willRetain" style="width:125px !important">
-                    <option value="false" data-i18n="google-iot-core.false"></option>
-                    <option value="true" data-i18n="google-iot-core.true"></option>
+                &nbsp;&nbsp;<i class="fa fa-history"></i>&nbsp;<span data-i18n="google-iot-core-custom-auth.retain"></span> &nbsp;<select id="node-config-input-willRetain" style="width:125px !important">
+                    <option value="false" data-i18n="google-iot-core-custom-auth.false"></option>
+                    <option value="true" data-i18n="google-iot-core-custom-auth.true"></option>
                 </select>
             </div>
             <div class="form-row">
-                <label for="node-config-input-willPayload"><i class="fa fa-envelope"></i> <span data-i18n="google-iot-core.label.payload"></span></label>
-                <input type="text" id="node-config-input-willPayload" data-i18n="[placeholder]google-iot-core.label.payload">
+                <label for="node-config-input-willPayload"><i class="fa fa-envelope"></i> <span data-i18n="google-iot-core-custom-auth.label.payload"></span></label>
+                <input type="text" id="node-config-input-willPayload" data-i18n="[placeholder]google-iot-core-custom-auth.label.payload">
             </div>
         </div>
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="google-iot-core-broker">
+<script type="text/x-red" data-help-name="google-iot-core-custom-auth-broker">
     <p>Host and port is already set to the Google IoT MQTT broker (no need to change)</p>
     <p>You can either enter directly the MQTT Client-ID or enter Project-ID, Region, Registry-ID and Device-ID, the Client-ID
     will be set automatically based on the given information.</p>
@@ -259,14 +263,14 @@ message store.</p>
     and between Node-RED restarts to reduce data loss.</p>
     <p>To enable persistent storage for input and output messages, click on the appropriate check boxes.<p>
     <p>Change the <em>compaction interval time</em> to compact the internal database and remove deleted messages.<p>
-    <p>Database files for a connection are stored in the Node-RED directory under the <em>google-iot-core</em> directory.  These
+    <p>Database files for a connection are stored in the Node-RED directory under the <em>google-iot-core-custom-auth</em> directory.  These
     can be safely removed after stopping Node-RED to clear unsent messages.  The database
     used is <a target="_blank" href="https://github.com/louischatriot/nedb">NeDB.</a>
     <p>For more information about MQTT see the <a href="http://www.eclipse.org/paho/" target="_blank">Eclipse Paho</a> site.</p>
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('google-iot-core-broker',{
+    RED.nodes.registerType('google-iot-core-custom-auth-broker',{
         category: 'config',
         defaults: {
             name: {value:""},
@@ -284,6 +288,7 @@ message store.</p>
             projectid: {value:""},
             registryid: {value:""},
             deviceid: {value:""},
+            algorithm: {value:"RS256",required:true},
             region: {value:""},
             verifyservercert: { value: false},
             keepalive: {value:60,validate:RED.validators.number()},
@@ -319,20 +324,20 @@ message store.</p>
             });
             tabs.addTab({
                 id: "mqtt-broker-tab-connection",
-                label: this._("google-iot-core.tabs-label.connection")
+                label: this._("google-iot-core-custom-auth.tabs-label.connection")
             });
             /* Disabled
             tabs.addTab({
                 id: "mqtt-broker-tab-security",
-                label: this._("google-iot-core.tabs-label.security")
+                label: this._("google-iot-core-custom-auth.tabs-label.security")
             });
             tabs.addTab({
                 id: "mqtt-broker-tab-birth",
-                label: this._("google-iot-core.tabs-label.birth")
+                label: this._("google-iot-core-custom-auth.tabs-label.birth")
             });
             tabs.addTab({
                 id: "mqtt-broker-tab-will",
-                label: this._("google-iot-core.tabs-label.will")
+                label: this._("google-iot-core-custom-auth.tabs-label.will")
             }); */
             setTimeout(function() { tabs.resize(); },0);
             if (typeof this.cleansession === 'undefined') {

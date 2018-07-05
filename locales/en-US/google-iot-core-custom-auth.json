@@ -1,5 +1,5 @@
 {
-    "google-iot-core": {
+    "google-iot-core-custom-auth": {
         "label": {
             "broker": "Server",
             "example": "e.g. localhost",
@@ -7,6 +7,7 @@
             "clientid": "Client ID",
             "region": "Cloud region",
             "projectid": "Project ID",
+            "algorithm": "Algorithm",
             "deviceid": "Device ID",
             "registryid": "Registry ID",
             "port": "Port",
