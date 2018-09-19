@@ -58,10 +58,10 @@ message store.</p>
             qos: {value: "2"},
             broker: {type:"google-iot-core-custom-auth-broker", required:true}
         },
-        color:"#AAAA66",
+        color:"#CCB2FF",
         inputs:0,
         outputs:1,
-        icon: "bridge.png",
+        icon: "google-iot.png",
         label: function() {
             return this.name||"google-iot-core-custom-auth";
         },
@@ -137,10 +137,10 @@ message store.</p>
             retain: {value:""},
             broker: {type:"google-iot-core-custom-auth-broker", required:true}
         },
-        color:"#AAAA66",
+        color:"#CCB2FF",
         inputs:1,
         outputs:0,
-        icon: "bridge.png",
+        icon: "google-iot.png",
         align: "right",
         label: function() {
             return this.name||"google-iot-core-custom-auth";
@@ -326,19 +326,6 @@ message store.</p>
                 id: "mqtt-broker-tab-connection",
                 label: this._("google-iot-core-custom-auth.tabs-label.connection")
             });
-            /* Disabled
-            tabs.addTab({
-                id: "mqtt-broker-tab-security",
-                label: this._("google-iot-core-custom-auth.tabs-label.security")
-            });
-            tabs.addTab({
-                id: "mqtt-broker-tab-birth",
-                label: this._("google-iot-core-custom-auth.tabs-label.birth")
-            });
-            tabs.addTab({
-                id: "mqtt-broker-tab-will",
-                label: this._("google-iot-core-custom-auth.tabs-label.will")
-            }); */
             setTimeout(function() { tabs.resize(); },0);
             if (typeof this.cleansession === 'undefined') {
                 this.cleansession = true;
