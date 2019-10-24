@@ -71,6 +71,7 @@ module.exports = function (RED) {
         this.persistin = n.persistin;
         this.persistout = n.persistout;
         this.algorithm = n.algorithm;
+        this.topicin = n.topicin;
 
         // Config node state
         this.brokerurl = "";
@@ -360,7 +361,8 @@ module.exports = function (RED) {
         }
         this.broker = n.broker;
         this.brokerConn = RED.nodes.getNode(this.broker);
-        this.topic = '/devices/' + this.brokerConn.deviceid + '/config';
+        this.topicin = n.topicin;
+        this.topic = '/devices/' + this.brokerConn.deviceid + '/' + this.topicin;
         if (!/^(#$|(\+|[^+#]*)(\/(\+|[^+#]*))*(\/(\+|#|[^+#]*))?$)/.test(this.topic)) {
             return this.warn(RED._("google-iot-core-custom-auth.errors.invalid-topic"));
         }

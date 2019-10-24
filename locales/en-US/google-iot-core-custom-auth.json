@@ -19,7 +19,8 @@
             "payload": "Payload",
             "persistout": "Persist outgoing messages",         
             "persistin": "Incoming messages",            
-            "compactinterval": "Compaction interval time (s)"            
+            "compactinterval": "Compaction interval time (s)",
+            "topicin": "Topic In"           
         },
         "tabs-label": {
             "connection": "Connection",
