@@ -30,11 +30,19 @@
         <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="google-iot-core-custom-auth.label.name"></span></label>
         <input type="text" id="node-input-name" data-i18n="[placeholder]google-iot-core-custom-auth.label.name">
     </div>
+    <div class="form-row">
+        <label for="node-input-topicin"><i class="fa fa-empire"></i> <span data-i18n="google-iot-core-custom-auth.label.topicin"></span></label>
+        <select id="node-input-topicin" style="width:125px !important">
+            <option value="config">config</option>
+            <option value="commands/#">commands/#</option>
+        </select>
+    </div>
 </script>
 
 <script type="text/x-red" data-help-name="google-iot-core-custom-auth in">
-<p>Connects to Google IoT core MQTT broker and subscribes to messages from the /devices/&lt;DeviceID&gt;/config topic backed by a persistent
-message store.</p>
+<p>Connects to Google IoT core MQTT broker and subscribes to messages from the /devices/&lt;DeviceID&gt;/&lt;Toîc In&gt; topic backed by a persistent
+message store.
+Enter Topic In = config for configuration messages, commands/# for command messages</p>
     <h3>Outputs</h3>
     <dl class="message-properties">
        <dt>payload <span class="property-type">string | buffer</span></dt>
@@ -56,7 +64,8 @@ message store.</p>
         defaults: {
             name: {value:""},
             qos: {value: "2"},
-            broker: {type:"google-iot-core-custom-auth-broker", required:true}
+            broker: {type:"google-iot-core-custom-auth-broker", required:true},
+            topicin: {value:"config"}
         },
         color:"#CCB2FF",
         inputs:0,
@@ -135,6 +144,7 @@ message store.</p>
             name: {value:""},
             qos: {value:""},
             retain: {value:""},
+            topicin: {value:""},
             broker: {type:"google-iot-core-custom-auth-broker", required:true}
         },
         color:"#CCB2FF",
@@ -303,7 +313,8 @@ message store.</p>
             birthPayload: {value:""},
             persistout: {value:true},
             persistin: {value:false},
-            compactinterval: {value:30,validate:RED.validators.number()}
+            compactinterval: {value:30,validate:RED.validators.number()},
+            topicin: {value:""},
         },
         label: function() {
             var lab = this.name;
